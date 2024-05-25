@@ -2,7 +2,6 @@ package com.Api.controller;
 
 import com.Api.dto.DadosAgendamentoConsulta;
 import com.Api.dto.DadosCancelamentoConsulta;
-import com.Api.dto.DadosDetalhamentoConsulta;
 import com.Api.infra.exception.ValidacaoException;
 import com.Api.service.AgendaDeConsultas;
 import jakarta.transaction.Transactional;
@@ -21,8 +20,8 @@ public class ConsultaController {
     @PostMapping
     @Transactional
     public ResponseEntity agendar(@RequestBody @Valid DadosAgendamentoConsulta dados) throws ValidacaoException {
-        agenda.agendar(dados);
-        return ResponseEntity.ok(new DadosDetalhamentoConsulta(null, null, null, null));
+        var dto = agenda.agendar(dados);
+        return ResponseEntity.ok(dto);
     }
 
     @DeleteMapping
